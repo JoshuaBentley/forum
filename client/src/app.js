@@ -1,12 +1,20 @@
-import React from "react";
-import {Container, AppBar, Typography, Grow, Grid, } from '@material-ui/core'
+import React, { useEffect } from "react";
+import { Container, AppBar, Typography, Grow, Grid, } from '@material-ui/core'
+import { useDispatch } from 'react-redux'
+
+import { getPosts } from './actions/posts'
+import SWlogo from './img/starwarslogo.png'
 import Posts from './components/Posts/Posts'
 import Form from './components/Form/Form'
-import useStyles from './styles'
-import SWlogo from './img/starwarslogo.png'
+import makeStyles from './styles'
 
 const App = () => {
-    const styling = useStyles()
+    const styling = makeStyles()
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getPosts())
+    }, [dispatch])
 
     return (
         <Container maxidth="lg">
